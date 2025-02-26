@@ -12,6 +12,7 @@ class NIDSEnv(gym.Env):
         # Load Dataset
         self.df = pd.read_csv(data_path)
 
+        # Feature selection algorithm needed for live traffic later on
         self.df.drop(["attack_cat","stcpb", "dtcpd", "swin", "dwin", "tcprtt", "synack", "ackdat", "ct_flw_http_mthd", "smean", "dmean", "sloss", "dloss"], axis=1, inplace=True)
         categorical_cols = ["proto", "service", "state"]
         self.df = pd.get_dummies(self.df, columns=categorical_cols)
